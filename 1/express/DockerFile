@@ -1,0 +1,19 @@
+## BUILD
+# docker build -t budget/backend:1.0.0 -f DockerFile .
+## RUN
+# docker run -d -p 8080:3000 -e HOLA=jesus budget/backend:1.0.0
+
+FROM node:14.18.1
+
+COPY . /opt/backend
+
+ENV DB_IP=127.0.0.1 \
+    DB_USER=my_user \
+    DB_PASS=my_pass \
+    HOLA=mundo
+
+WORKDIR /opt/backend 
+
+RUN npm install
+
+CMD ["node", "index.js"]
